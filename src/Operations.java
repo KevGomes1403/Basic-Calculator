@@ -12,6 +12,17 @@ public class Operations {
         operators = new ArrayList<>();
     }
 
+    public Operations(String inp) {
+        this();
+
+        for (int i = 0; i < inp.length(); i++) {
+            String op = Character.toString(inp.charAt(i));
+            calcInput.add(op);
+        }
+
+        initArrays();
+    }
+
     public Operations(ArrayList<String> inp) {
         this();
 
@@ -19,6 +30,10 @@ public class Operations {
             calcInput.add(s);
         }
 
+        initArrays();
+    }
+
+    public void initArrays() {
         // Add all numbers to calcInput by creating individual Numbers objects
         // TODO: Add a way to handle decimals
         ArrayList<Double> num = new ArrayList<Double>();

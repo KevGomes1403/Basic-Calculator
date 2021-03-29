@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class Calculator extends JFrame {
 
@@ -51,67 +52,78 @@ public class Calculator extends JFrame {
     *   create individual Number objects afterwards
     *   Final calculation is done at the end
     */
+    public void onNumPressed (ArrayList<String> arr) {
+        Operations tempOper = new Operations(arr);
+        standardInput.setText(tempOper.toString());
+    }
 
     public void standardInputHandler() {
         ArrayList<String> input = new ArrayList<String>();
 
         st0.addActionListener(e -> {
             input.add("0");
-            standardInput.setText(input.toString());
+            onNumPressed(input);
         });
 
         st1.addActionListener(e -> {
             input.add("1");
-            standardInput.setText(input.toString());
+            onNumPressed(input);
         });
 
         st2.addActionListener(e -> {
             input.add("2");
-            standardInput.setText(input.toString());
+            onNumPressed(input);
         });
 
         st3.addActionListener(e -> {
             input.add("3");
-            standardInput.setText(input.toString());
+            onNumPressed(input);
         });
 
         st4.addActionListener(e -> {
             input.add("4");
-            standardInput.setText(input.toString());
+            onNumPressed(input);
         });
 
         st5.addActionListener(e -> {
             input.add("5");
-            standardInput.setText(input.toString());
+            onNumPressed(input);
         });
 
         st6.addActionListener(e -> {
             input.add("6");
-            standardInput.setText(input.toString());
+            onNumPressed(input);
         });
 
         st7.addActionListener(e -> {
             input.add("7");
-            standardInput.setText(input.toString());
+            onNumPressed(input);
         });
 
         st8.addActionListener(e -> {
             input.add("8");
-            standardInput.setText(input.toString());
+            onNumPressed(input);
         });
 
         st9.addActionListener(e -> {
             input.add("9");
-            standardInput.setText(input.toString());
+            onNumPressed(input);
         });
 
         stAdd.addActionListener(e -> {
             input.add("+");
-            standardInput.setText(input.toString());
+            onNumPressed(input);
         });
 
         stEnter.addActionListener(e -> {
-            Operations oper = new Operations(input);
+            Operations oper;
+            if (input.size() == 0) {
+                String inputString = standardInput.getText();
+                oper = new Operations(inputString);
+            } else {
+                oper = new Operations(input);
+            }
+
             standardInput.setText(Double.toString(oper.compute()));
             input.clear();
         });
