@@ -22,6 +22,12 @@ public class Numbers {
 
     }
 
+    public Numbers (double d) {
+        this();
+
+        this.number = d;
+    }
+
     public void convertToDouble() {
         int multiplier = 1;
         for (int i = inp.size() - 1; i >= 0; i--) {
